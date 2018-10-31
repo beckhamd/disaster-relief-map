@@ -178,10 +178,10 @@ app.post('/signup',
     .isLength({ min: 2 }).withMessage('Username must be at least 2 characters in length')
     .isAlphanumeric().withMessage('Username must be alphanumeric'),
   function(req, res, next) {
-    let errors = validationResult(req);
+    let result = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      let errors = errors.array().map(function(error) {
+    if (!result.isEmpty()) {
+      let errors = result.array().map(function(error) {
           return error.msg;
       });
 
@@ -226,10 +226,10 @@ app.post('/account/password',
       }
     }).withMessage('Passwords do not match'),
   function(req, res) {
-    let errors = validationResult(req);
+    let result = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      let errors = errors.array().map(function(error) {
+    if (!result.isEmpty()) {
+      let errors = result.array().map(function(error) {
           return error.msg;
       });
 
