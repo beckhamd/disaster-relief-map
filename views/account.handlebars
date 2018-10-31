@@ -1,0 +1,33 @@
+{{#if errorMessage}}
+<div class="ui error message">
+  <i class="close icon"></i>
+  {{{errorMessage}}}
+</div>
+{{/if}}
+{{#if successMessage}}
+<div class="ui success message">
+  <i class="close icon"></i>
+  {{{successMessage}}}
+</div>
+{{/if}}
+<h1 class="ui header">Profile Information</h1>
+<div class="ui divider"></div>
+<div class="ui large form">
+  <div class="six wide field">
+    <label>Username</label>
+    <input placeholder="{{user.username}}" readonly="" type="text">
+  </div>
+</div>
+<h1 class="ui header">Change Password</h1>
+<div class="ui divider"></div>
+<form class="ui large form" action="/account/password" method="post">
+  <div class="six wide field">
+    <label>New Password</label>
+    <input type="password" name="password">
+  </div>
+  <div class="six wide field">
+    <label>Confirm Password</label>
+    <input type="password" name="confirmPassword">
+  </div>
+  <button class="ui button" type="submit">Change Password</button>
+</form>

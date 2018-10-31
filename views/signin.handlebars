@@ -1,0 +1,27 @@
+<div id="form" class="ui container">
+  <h1 class="ui center aligned header">Sign In</h1>
+  {{#if errorMessage}}
+  <div class="ui error message">
+    <i class="close icon"></i>
+    {{{errorMessage}}}
+  </div>
+  {{/if}}
+  <form class="ui large form" action="/signin" method="post">
+    <div class="ui segment">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" name="username">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password">
+      </div>
+      <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" tabindex="0" name="remember" value="yes">
+          <label>Remember Me</label>
+        </div>
+      </div>
+      <button class="ui button" type="submit">Submit</button>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+{{#if successMessage}}
+<div class="ui success message">
+  <i class="close icon"></i>
+  {{{successMessage}}}
+</div>
+{{/if}}
+{{#unless user}}
+<div class="ui warning message" id="warning-message">
+  <p>Please <a href="/signin">sign in</a> or <a href="/signup">sign up</a> to add issues to the map.</p>
+  <p>An account with the username <strong>test</strong> and the password <strong>test</strong> may be used.</p>
+</div>
+{{/unless}}
+<h1 class="ui header">Local Issues</h1>
+<p>A map of the surrounding issues is shown here.</p>
+{{#if user}}
+<div id="floating-panel">
+  <text><b>Select</b> the emergency issue before marking the map:</text>&nbsp&nbsp
+
+  <select class="ui selection dropdown">
+    <option id="ar-opt" value="assistance request">Assistance Request</option>
+    <option id="fi-opt" value="fire">Fire</option>
+    <option id="fl-opt" value="flood">Flooding</option>
+    <option id="el-opt" value="electrical">Electrical</option>
+    <option id="to-opt" value="toxic">Toxic Materials</option>
+  </select></br></br>
+
+  <input onclick="deleteAssistanceRequests();" class="ui button" type=button value="Delete Assistance Requests"> &nbsp
+  <input onclick="deleteHazards();" class="ui button" type=button value="Delete Hazards"> &nbsp
+  <input onclick="deleteAll();" class="ui button" type=button value="Delete All">
+</div>
+<p />
+{{/if}}
+<div id="map"></div>
+<script src="scripts/map.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW-8StXEhwg5svT02VQdIyRlcyxlqK1KE&callback=initMap">
+</script>

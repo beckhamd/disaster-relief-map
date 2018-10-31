@@ -1,0 +1,11 @@
+runtime: nodejs8
+
+env_variables:
+  SQL_HOST: /cloudsql/project:region:instance
+  SQL_USER: user
+  SQL_PASSWORD: password
+  SQL_DATABASE: database
+  INSTANCE_CONNECTION_NAME: project:region:instance
+
+beta_settings:
+  cloud_sql_instances: project:region:instance

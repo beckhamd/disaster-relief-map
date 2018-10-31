@@ -1,0 +1,21 @@
+<div id="form" class="ui container">
+  <h1 class="ui center aligned header">Sign Up</h1>
+  {{#if errorMessage}}
+  <div class="ui error message">
+    <i class="close icon"></i>
+    {{{errorMessage}}}
+  </div>
+  {{/if}}
+  <form class="ui large form" action="/signup" method="post">
+    <div class="ui segment">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" name="username">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password">
+      </div>
+      <button class="ui button" type="submit">Submit</button>
+  </div>
+</div>
