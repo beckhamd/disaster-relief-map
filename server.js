@@ -226,26 +226,31 @@ app.post('/account/password',
       }
     }).withMessage('Passwords do not match'),
   function(req, res) {
-    let result = validationResult(req);
-
-    if (!result.isEmpty()) {
-      let errors = result.array().map(function(error) {
-          return error.msg;
-      });
-
-      req.flash('error', errors.join('<br \>'));
+    if (req.user.id === 1) {
+      req.flash('error', 'Password on this account may not be changed');
       res.redirect('/account');
     } else {
-      let updateQuery = "UPDATE users SET password = $1 WHERE id = $2";
+      let result = validationResult(req);
 
-      pool.query(updateQuery, [bcrypt.hashSync(req.body.password, 10), req.user.id], function(pgErr, pgRes) {
-        if (pgErr) {
-          return next(pgErr);
-        }
+      if (!result.isEmpty()) {
+        let errors = result.array().map(function(error) {
+            return error.msg;
+        });
 
-        req.flash('success', 'Password successfully changed');
+        req.flash('error', errors.join('<br \>'));
         res.redirect('/account');
-      });
+      } else {
+        let updateQuery = "UPDATE users SET password = $1 WHERE id = $2";
+
+        pool.query(updateQuery, [bcrypt.hashSync(req.body.password, 10), req.user.id], function(pgErr, pgRes) {
+          if (pgErr) {
+            return next(pgErr);
+          }
+
+          req.flash('success', 'Password successfully changed');
+          res.redirect('/account');
+        });
+      }
     }
   }
 );
