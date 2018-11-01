@@ -1,6 +1,7 @@
 $( document ).ready(function() {
-  $('.ui.dropdown')
-    .dropdown();
+  $('.ui.dropdown').dropdown();
+
+  $('.ui.checkbox').checkbox();
 
   $('.message .close')
     .on('click', function() {
