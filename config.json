@@ -1,0 +1,6 @@
+{
+  "POSTGRES_HOST": "/cloudsql/project:region:instance",
+  "POSTGRES_USER": "user",
+  "POSTGRES_PASSWORD": "password",
+  "POSTGRES_DATABASE": "database"
+}
