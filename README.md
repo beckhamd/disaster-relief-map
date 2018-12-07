@@ -1,12 +1,12 @@
 # Disaster Relief Map
-[Live Demo](https://disaster-relief-map.appspot.com/)
+### [Live Demo](https://disaster-relief-map.appspot.com/)
 
 This is a small web app that allows users to drop pins on a map provided by the Google Maps API. It is powered by Express and features a basic user authentication system written with the help of Passport.js.
 
-## Installation
-This app is configured for use on the Google App Engine. Follow these steps in order to install it:
+## Instructions
+This app is configured for use on Google App Engine. Follow these instructions in order to use and deploy it:
 * On the Google Cloud Platform Console, create a Cloud SQL PostgreSQL instance.
-* Import the provided `database.sql` file into the the PostgreSQL database.
+* Import the provided `database.sql` file.
 * Create a `config.json` file in the root directory with the following contents:
   ```
   {
@@ -17,5 +17,7 @@ This app is configured for use on the Google App Engine. Follow these steps in o
   }
   ```
   Edit the values as necessary in order to supply the correct database information.
-* Ensure that the project is set correctly using `gcloud config set project project-name`.
-* Deploy the app using `gcloud app deploy`.
+* Deploy the app:
+  ```
+  gcloud app deploy
+  ```
