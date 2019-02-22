@@ -1,5 +1,4 @@
 const express = require('express');
-const nconf = require('nconf');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars').create({
   defaultLayout: 'main'
@@ -15,16 +14,11 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-nconf
-  .argv()
-  .env()
-  .file({ file: 'config.json' });
-
 const pool = new pg.Pool({
-  host: nconf.get('POSTGRES_HOST'),
-  user: nconf.get('POSTGRES_USER'),
-  password: nconf.get('POSTGRES_PASSWORD'),
-  database: nconf.get('POSTGRES_DATABASE')
+  host: process.env.RDS_HOSTNAME,
+  user: process.env.RDS_USERNAME,
+  password: process.env.RDS_PASSWORD,
+  database: process.env.RDS_DB_NAME
 });
 
 const app = express();
@@ -51,9 +45,24 @@ app.use(passport.session());
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 8080);
+app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Table creation
+
+pool.query(
+  `CREATE TABLE IF NOT EXISTS users (
+  id serial NOT NULL,
+  username text NOT NULL,
+  password text NOT NULL
+)`,
+  (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+  }
+);
 
 // Passport session setup (serialize user)
 
